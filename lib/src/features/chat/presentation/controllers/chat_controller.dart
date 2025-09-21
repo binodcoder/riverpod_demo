@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod/riverpod.dart';
 
 import 'package:riverpod_demo/src/features/chat/data/ai_chat_repository.dart';
 import 'package:riverpod_demo/src/features/chat/domain/chat_message.dart';
@@ -9,7 +9,7 @@ import 'package:riverpod_demo/src/features/chat/domain/chat_state.dart';
 
 part 'chat_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 AiChatRepository aiChatRepository(Ref ref) {
   final repository = AiChatRepository();
   ref.onDispose(repository.dispose);
@@ -40,10 +40,9 @@ class ChatController extends _$ChatController {
     );
 
     try {
-      final reply = await ref.read(aiChatRepositoryProvider).sendMessage(
-            history: previousMessages,
-            prompt: prompt,
-          );
+      final reply = await ref
+          .read(aiChatRepositoryProvider)
+          .sendMessage(history: previousMessages, prompt: prompt);
 
       state = state.copyWith(
         messages: [...previousMessages, userMessage, reply],

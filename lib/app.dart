@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_demo/src/features/counter/home_page.dart';
+import 'package:riverpod_demo/src/features/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

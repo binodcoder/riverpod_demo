@@ -36,22 +36,5 @@ final counterProvider = AutoDisposeNotifierProvider<Counter, int>.internal(
 );
 
 typedef _$Counter = AutoDisposeNotifier<int>;
-String _$shoppingListHash() => r'c602e867f16df962d6fb440d4b67664946bb05c5';
-
-/// See also [ShoppingList].
-@ProviderFor(ShoppingList)
-final shoppingListProvider =
-    AutoDisposeAsyncNotifierProvider<ShoppingList, List<Grocery>>.internal(
-      ShoppingList.new,
-      name: r'shoppingListProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$shoppingListHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$ShoppingList = AutoDisposeAsyncNotifier<List<Grocery>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

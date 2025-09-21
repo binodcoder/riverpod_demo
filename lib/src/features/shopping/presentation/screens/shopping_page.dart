@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_demo/src/features/counter/controller.dart';
+import 'package:riverpod_demo/src/features/shopping/presentation/controller/shopping_controller.dart';
 import 'package:riverpod_demo/src/features/shopping/presentation/widgets/grocery_item.dart';
 
-class ShoppingPage extends ConsumerWidget {
-  const ShoppingPage({super.key});
+class ShoppingScreen extends ConsumerWidget {
+  const ShoppingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

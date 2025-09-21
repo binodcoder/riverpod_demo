@@ -20,27 +20,27 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   @override
   void initState() {
     super.initState();
-    _chatSubscription = ref.listenManual<ChatState>(
-      chatControllerProvider,
-      (previous, next) {
-        final previousLength = previous?.messages.length ?? 0;
-        if (next.messages.length != previousLength || next.isSending) {
-          _scheduleScrollToBottom();
-        }
+    _chatSubscription = ref.listenManual<ChatState>(chatControllerProvider, (
+      previous,
+      next,
+    ) {
+      final previousLength = previous?.messages.length ?? 0;
+      if (next.messages.length != previousLength || next.isSending) {
+        _scheduleScrollToBottom();
+      }
 
-        final previousError = previous?.errorMessage;
-        final error = next.errorMessage;
-        if (error != null && error.isNotEmpty && error != previousError) {
-          SchedulerBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(SnackBar(content: Text(error)));
-            ref.read(chatControllerProvider.notifier).resetError();
-          });
-        }
-      },
-    );
+      final previousError = previous?.errorMessage;
+      final error = next.errorMessage;
+      if (error != null && error.isNotEmpty && error != previousError) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(content: Text(error)));
+          ref.read(chatControllerProvider.notifier).resetError();
+        });
+      }
+    });
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 import '../domain/chat_message.dart';
@@ -12,14 +13,22 @@ class AiChatRepository {
     this.baseUrl = 'https://api.openai.com/v1',
     this.systemPrompt =
         'You are a friendly grocery assistant helping users with shopping lists.',
-  })  : _client = client ?? http.Client(),
-        _apiKey = apiKey ?? const String.fromEnvironment('OPENAI_API_KEY');
+  }) : _client = client ?? http.Client(),
+       _apiKey = _resolveApiKey(apiKey);
 
   final http.Client _client;
   final String _apiKey;
   final String baseUrl;
   final String model;
   final String systemPrompt;
+
+  static String _resolveApiKey(String? apiKey) {
+    final value =
+        apiKey ??
+        dotenv.maybeGet('OPENAI_API_KEY') ??
+        const String.fromEnvironment('OPENAI_API_KEY');
+    return value.trim();
+  }
 
   bool get hasValidKey => _apiKey.isNotEmpty;
 
@@ -29,7 +38,7 @@ class AiChatRepository {
   }) async {
     if (!hasValidKey) {
       throw StateError(
-        'Missing OpenAI API key. Pass it via --dart-define=OPENAI_API_KEY=your_key.',
+        'Missing OpenAI API key. Provide it via .env or --dart-define=OPENAI_API_KEY=your_key.',
       );
     }
 
@@ -59,9 +68,10 @@ class AiChatRepository {
     );
 
     if (response.statusCode >= 400) {
-      final message = response.body.isEmpty
-          ? 'OpenAI request failed with status ${response.statusCode}'
-          : response.body;
+      final message =
+          response.body.isEmpty
+              ? 'OpenAI request failed with status ${response.statusCode}'
+              : response.body;
       throw Exception(message);
     }
 

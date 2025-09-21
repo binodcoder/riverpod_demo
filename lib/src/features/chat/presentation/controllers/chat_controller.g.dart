@@ -6,11 +6,11 @@ part of 'chat_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiChatRepositoryHash() => r'18dacdb4c6dc969b517d3a5248481a6d9413d144';
+String _$aiChatRepositoryHash() => r'4d8f6079d52a685c06ea8e3d526a55958ea1367e';
 
 /// See also [aiChatRepository].
 @ProviderFor(aiChatRepository)
-final aiChatRepositoryProvider = AutoDisposeProvider<AiChatRepository>.internal(
+final aiChatRepositoryProvider = Provider<AiChatRepository>.internal(
   aiChatRepository,
   name: r'aiChatRepositoryProvider',
   debugGetCreateSourceHash:
@@ -23,7 +23,7 @@ final aiChatRepositoryProvider = AutoDisposeProvider<AiChatRepository>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef AiChatRepositoryRef = AutoDisposeProviderRef<AiChatRepository>;
+typedef AiChatRepositoryRef = ProviderRef<AiChatRepository>;
 String _$chatControllerHash() => r'38bd5807f1039516544dd6b3d54723db238856dd';
 
 /// See also [ChatController].
