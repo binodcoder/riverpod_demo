@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_demo/src/features/counter/presentation/controller/controller.dart';
 import 'package:riverpod_demo/src/features/chat/presentation/screens/chat_page.dart';
 import 'package:riverpod_demo/src/features/counter/presentation/screens/counter_screen.dart';
-import 'package:riverpod_demo/src/features/shopping/presentation/screens/shopping_page.dart';
+import 'package:riverpod_demo/src/features/shopping/presentation/screens/shopping_screen.dart';
 import 'package:riverpod_demo/src/features/counter/presentation/widgets/counter_actions.dart';
 
 class MyHomePage extends ConsumerWidget {

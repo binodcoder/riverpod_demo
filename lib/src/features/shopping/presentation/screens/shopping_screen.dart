@@ -14,7 +14,7 @@ class ShoppingScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error:
             (error, _) =>
-                Center(child: Text('Failed to load groceries: $error')),
+                Center(child: Text('Failed to load groceries: $error}')),
         data: (items) {
           if (items.isEmpty) {
             return const Center(child: Text('No item added yet'));
