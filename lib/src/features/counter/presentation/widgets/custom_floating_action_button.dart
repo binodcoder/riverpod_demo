@@ -33,13 +33,7 @@ class CustomFloatingActionButton extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [colorScheme.primary, colorScheme.primaryContainer],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.primary.withAlpha(89),
-                  blurRadius: 16,
-                  offset: const Offset(0, 8),
-                ),
-              ],
+              boxShadow: [BoxShadow(color: colorScheme.primary.withAlpha(89))],
             ),
             child: InkWell(
               customBorder: const CircleBorder(),

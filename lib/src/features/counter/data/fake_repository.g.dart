@@ -1,29 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shopping_repository.dart';
+part of 'fake_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$shoppingRepositoryHash() =>
-    r'ebc7545e3b0c7dbc8434d92ef9ab2fe00bf4fe3f';
+String _$fakeRepositoryHash() => r'18db412f92941b98f80624fb7dd27be51f1366cc';
 
-/// See also [shoppingRepository].
-@ProviderFor(shoppingRepository)
-final shoppingRepositoryProvider = Provider<ShoppingRepository>.internal(
-  shoppingRepository,
-  name: r'shoppingRepositoryProvider',
+/// See also [fakeRepository].
+@ProviderFor(fakeRepository)
+final fakeRepositoryProvider = Provider<FakeRepository>.internal(
+  fakeRepository,
+  name: r'fakeRepositoryProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$shoppingRepositoryHash,
+          : _$fakeRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ShoppingRepositoryRef = ProviderRef<ShoppingRepository>;
+typedef FakeRepositoryRef = ProviderRef<FakeRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

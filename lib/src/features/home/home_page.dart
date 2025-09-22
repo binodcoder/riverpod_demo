@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_demo/src/features/counter/presentation/controller/controller.dart';
+import 'package:riverpod_demo/src/features/counter/presentation/controller/fake_counter_controller.dart';
 import 'package:riverpod_demo/src/features/chat/presentation/screens/chat_page.dart';
 import 'package:riverpod_demo/src/features/counter/presentation/screens/counter_screen.dart';
+import 'package:riverpod_demo/src/features/home/widgets/custom_button.dart';
 import 'package:riverpod_demo/src/features/shopping/presentation/screens/shopping_screen.dart';
-import 'package:riverpod_demo/src/features/counter/presentation/widgets/counter_actions.dart';
 
 class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
@@ -28,8 +28,18 @@ class MyHomePage extends ConsumerWidget {
           ),
         ],
       ),
-      body: Column(children: [CounterScreen(), ShoppingScreen()]),
-      floatingActionButton: const CounterActions(),
+      body: Column(
+        children: [
+          CustomButton(
+            onPressed: () {
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (_) => const CounterScreen()));
+            },
+          ),
+          ShoppingScreen(),
+        ],
+      ),
     );
   }
 }

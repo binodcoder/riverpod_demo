@@ -49,7 +49,6 @@ class HttpShoppingRepository implements ShoppingRepository {
   Future<List<Grocery>> fetchGroceries() async {
     final response = await _client.get(_buildUri());
 
-    // --- Add the switch / mapping here ---
     switch (response.statusCode) {
       case 400:
         throw BadRequestException('Bad request');
@@ -59,6 +58,7 @@ class HttpShoppingRepository implements ShoppingRepository {
         throw ForbiddenException('Forbidden');
       case 404:
         throw NotFoundException('Groceries not found');
+
       case 500:
         throw ServerException('Internal server error', response.statusCode);
       default:
@@ -72,7 +72,6 @@ class HttpShoppingRepository implements ShoppingRepository {
         }
     }
 
-    // --- Continue with body parsing ---
     if (response.body.trim() == 'null') return const [];
 
     final decoded = json.decode(response.body) as Map<String, dynamic>?;

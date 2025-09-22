@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_demo/src/core/exceptions/connection_timeout_exception.dart';
+import 'package:riverpod_demo/src/core/exceptions/network_exception.dart';
+import 'package:riverpod_demo/src/core/exceptions/server_exception.dart';
 import 'package:riverpod_demo/src/features/shopping/presentation/controller/shopping_controller.dart';
 import 'package:riverpod_demo/src/features/shopping/presentation/widgets/grocery_item.dart';
+import 'package:riverpod_demo/src/features/shopping/presentation/widgets/retry_button.dart';
+import 'package:riverpod_demo/src/features/shopping/presentation/widgets/check_connection_widget.dart';
 
 class ShoppingScreen extends ConsumerWidget {
   const ShoppingScreen({super.key});
@@ -12,9 +17,18 @@ class ShoppingScreen extends ConsumerWidget {
     return Expanded(
       child: groceries.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error:
-            (error, _) =>
-                Center(child: Text('Failed to load groceries: $error}')),
+        error: (error, _) {
+          if (error is ConnectionTimeoutException) {
+            return RetryButton();
+          } else if (error is NetworkException) {
+            return CheckConnectionWidget();
+          } else if (error is ServerException) {
+            return Text('Server error: ${error.statusCode}');
+          }
+
+          return Center(child: Text('Failed to load groceries: $error}'));
+        },
+
         data: (items) {
           if (items.isEmpty) {
             return const Center(child: Text('No item added yet'));

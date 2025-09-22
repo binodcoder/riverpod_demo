@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_demo/src/features/counter/presentation/controller/controller.dart';
+import 'package:riverpod_demo/src/features/counter/presentation/controller/counter_controller.dart';
 import 'package:riverpod_demo/src/features/counter/presentation/widgets/custom_floating_action_button.dart';
 
 class CounterActions extends ConsumerWidget {
